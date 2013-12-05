@@ -1,0 +1,30 @@
+<div class="styleguide-example">
+    <h3>{{reference}} <em>{{filename}}</em></h3>
+
+    <div class="styleguide-description">
+        {{{description}}}
+
+        {{#modifiers_count}}
+            <ul class="styleguide-modifiers">
+                {{#modifiers}}
+                <li><strong>{{name}}</strong> - {{description}}</li>
+                {{/modifiers}}
+            </ul>
+        {{/modifiers_count}}
+    </div>
+
+    <div class="styleguide-element">
+        {{{example}}}
+    </div>
+
+    {{#modifiers}}
+        <div class="styleguide-element styleguide-modifier">
+            <span class="styleguide-modifier-name">{{name}}</span>
+            {{{example}}}
+        </div>
+   {{/modifiers}}
+
+   <div class="styleguide-html">
+       <pre class="styleguide-code"><code>{{example}}</code></pre>
+   </div>
+</div>

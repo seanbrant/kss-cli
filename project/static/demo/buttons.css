@@ -1,0 +1,35 @@
+/*
+Your standard form button.
+
+:hover    - Highlights when hovering.
+:disabled - Dims the button when disabled.
+.primary  - Indicates button is the primary action.
+.smaller  - A little bit smaller now.
+
+Styleguide Buttons.1
+*/
+button {
+    background: #666;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 15px 7px 15px;
+}
+
+button.primary, button.primary:hover {
+    background: #00ee99;
+    color: #fff;
+}
+
+button.smaller{
+    font-size: 11px;
+}
+
+button:hover{
+    background: #555;
+}
+
+button:disabled{
+    opacity: 0.5;
+}

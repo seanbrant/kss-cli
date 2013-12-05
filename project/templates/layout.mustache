@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Styleguide Example</title>
+        <meta charset="utf-8">
+        {{>_css}}
+    </head>
+    <body>
+        <header>Styleguide Example</header>
+        <div id="wrapper">
+            <nav role="main">
+                <ul>
+                    {{#nav}}
+                    <li><a{{#is_active}} class="active"{{/is_active}} href="{{url}}">{{number}}. {{name}}</a></li>
+                    {{/nav}}
+                </ul>
+            </nav>
+            {{{content}}}
+        </div>
+        {{>_js}}
+    </body>
+</html>

@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address { margin: 1em 0; }
+p { line-height: 1.5; }
+li, dd { margin-left: 5%; }
+fieldset { padding: .5em; }
+select option{ padding: 0 5px; }
+
+.clear{
+    clear: both;
+    font-size: 0px;
+    height: 0px;
+    line-height: 0px;
+    overflow:hidden;
+}
+a{ outline: none; }
+a img{ border: none; }
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .clearfix { height: 1%; }
+.clearfix { display:inline-block; }
+.clearfix { display: block; }
+
+
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+header {
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    color: #666;
+    display: block;
+    font-size: 16px;
+    padding: 20px;
+}
+
+#wrapper {
+    width: 600px;
+    padding-left: 200px;
+}
+
+nav[role=main] {
+    float: left;
+    margin-left: -200px;
+    width: 160px;
+}
+nav ul {
+    margin: 0 10px 0 0;
+}
+nav li {
+    list-style-type: none;
+    margin: 0 10px 14px 20px;
+}
+
+nav li a {
+    color: #666;
+    display: block;
+    text-decoration: none;
+}
+nav li a.active {
+    font-weight: bold;
+}
+
+h1.styleguide {
+  margin: 0 0 -5px 0;
+  font-size: 24px;
+  color: #000; }
+
+.styleguide-example {
+    margin: 15px 0;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.styleguide-example > h3 {
+    background: #333;
+    border-top: 1px solid #000;
+    color: #fff;
+    font-size: 12px;
+    margin: 0;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.styleguide-example > h3 em {
+    color: #999;
+    float: right;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.styleguide-example .styleguide-info {
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.styleguide-example .styleguide-description p:first-child {
+    margin-top: 0;
+}
+
+.styleguide-example .styleguide-description p:last-child {
+    margin-bottom: 0;
+}
+
+.styleguide-example .styleguide-description code {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    font-family: Monaco, monospace;
+    font-size: 12px;
+    padding: 2px;
+}
+
+.styleguide-example .styleguide-element {
+    padding: 19px 20px 20px 20px;
+    position: relative;
+}
+
+.styleguide-example .styleguide-modifier {
+    border-top: 1px solid #eee;
+}
+
+.styleguide-example .styleguide-element .styleguide-modifier-name {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-top: none;
+    display: block;
+    padding: 5px 8px;
+    position: absolute;
+    font-size: 11px;
+    right: 0;
+    top: 0;
+    color: #999;
+}
+
+.styleguide-example ul.styleguide-modifiers {
+    margin: 12px 0 10px 24px;
+}
+
+.styleguide-example ul.styleguide-modifiers li {
+    list-style-type: disc;
+    margin: 0 0 6px 0;
+}
+
+.styleguide-example .styleguide-html {
+    background: #edf6f8;
+    border-top: 1px solid #dde7ea;
+    overflow: auto;
+    padding: 10px;
+}
+
+.styleguide-example .styleguide-html .styleguide-code {
+    font-family: Monaco, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.styleguide-example .styleguide-html .styleguide-code code {
+    background: none;
+}

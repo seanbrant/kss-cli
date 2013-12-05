@@ -1,0 +1,14 @@
+build_dir: _build
+
+source_dirs:
+    - static/demo
+
+template_dirs:
+    - templates
+
+static_dirs:
+    - static
+    - demo
+
+example_dirs:
+    - examples
