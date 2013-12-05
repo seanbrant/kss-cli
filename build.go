@@ -38,10 +38,6 @@ func Build(c *Config, g *Guide) error {
 	for k, h := range pages {
 		name := strings.ToLower(k)
 
-		if name == "/" {
-			name = "index"
-		}
-
 		path := filepath.Join(
 			c.BuildDir,
 			fmt.Sprintf("%s.html", strings.TrimRight(name, "/")),

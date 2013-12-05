@@ -10,6 +10,8 @@ import (
 	"strings"
 )
 
+const indexFilename = "index"
+
 type Modifier struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -62,11 +64,23 @@ func NewSection(s *kss.Section) *Section {
 
 type Page struct {
 	Config        *Config    `json:-`
-	Url           string     `json:url`
+	Filename      string     `json:"filename"`
 	Name          string     `json:"name"`
 	Sections      []*Section `json:"sections"`
 	SectionsCount int        `json:"sections_count"`
 	template      string
+}
+
+func (p *Page) Url() string {
+	if len(p.Config.PageExt) > 0 {
+		return fmt.Sprintf("/%s%s", p.Filename, p.Config.PageExt)
+	}
+
+	if p.Filename == indexFilename {
+		return "/"
+	} else {
+		return fmt.Sprintf("/%s/", p.Filename)
+	}
 }
 
 func (p *Page) AddSection(section *kss.Section) {
@@ -96,19 +110,19 @@ func (g *Guide) AddPageSection(name string, section *kss.Section) *Page {
 	return p
 }
 
-func (g *Guide) AddPage(url, name, template string) *Page {
-	url = appendSlash(fmt.Sprintf("/%s%s", strings.ToLower(url), g.Config.PageExt))
+func (g *Guide) AddPage(filename, name, template string) *Page {
+	filename = strings.ToLower(filename)
 
-	if g.Pages[url] == nil {
-		g.Pages[url] = &Page{
+	if g.Pages[filename] == nil {
+		g.Pages[filename] = &Page{
 			Config:   g.Config,
-			Url:      url,
+			Filename: filename,
 			Name:     name,
 			template: template,
 		}
 	}
 
-	return g.Pages[url]
+	return g.Pages[filename]
 }
 
 func (g *Guide) LoadExamples(paths []string) error {
@@ -141,16 +155,16 @@ func (g *Guide) LoadExamples(paths []string) error {
 	return nil
 }
 
-func (g *Guide) Nav(active string) map[string]interface{} {
+func (g *Guide) Nav(active *Page) map[string]interface{} {
 	number := 0
 	items := make([]map[string]interface{}, 0, len(g.Pages)+1)
 
 	for _, p := range g.Pages {
 		items = append(items, map[string]interface{}{
 			"name":      p.Name,
-			"url":       p.Url,
+			"url":       p.Url(),
 			"number":    number,
-			"is_active": (p.Url == strings.ToLower(active)),
+			"is_active": (p == active),
 		})
 
 		number += 1
@@ -164,12 +178,12 @@ func (g *Guide) Nav(active string) map[string]interface{} {
 func (g *Guide) RenderPage(path string) (string, error) {
 	path = strings.TrimRight(path, g.Config.PageExt)
 
-	p := g.Pages[strings.ToLower(path)]
+	p := g.Pages[strings.ToLower(strings.Trim(path, "/"))]
 	if p == nil {
 		return "", fmt.Errorf("page '%s' not found", path)
 	}
 
-	return p.Render(g.Nav(p.Url))
+	return p.Render(g.Nav(p))
 }
 
 func (g *Guide) RenderStatic(path string) (string, error) {
@@ -215,7 +229,7 @@ func NewGuide(c *Config) (g *Guide, err error) {
 		Pages:  make(map[string]*Page),
 	}
 
-	g.AddPage("", "Overview", "index")
+	g.AddPage(indexFilename, "Overview", "index")
 
 	for reference, section := range kss.Parser(c.SourceDirs...) {
 		g.AddPageSection(strings.Split(reference, ".")[0], section)

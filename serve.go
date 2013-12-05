@@ -18,6 +18,10 @@ func Serve(g *Guide, w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 
+	if path == "/" {
+		path = indexFilename
+	}
+
 	html, err := g.Render(path)
 	if err != nil {
 		return err
