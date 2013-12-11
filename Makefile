@@ -1,3 +1,7 @@
+build:
+	go build -o _build/kss
+
+
 compile-project:
 	go get github.com/jteeuwen/go-bindata
 	tar -cvf project.tar project
